@@ -9,9 +9,10 @@
   </head>
 
   <body>
-    <form action="php\action.php" method="post">
-      Группа: <input type="text" name="search_g" /><br />
-      <input type="submit" />
+    <form name="search" action="php\action.php" method="post">
+      Группа:
+      <input type="search" name="search_g" placeholder="Поиск" />
+      <button type="submit">Найти</button>
     </form>
   </body>
 </html>

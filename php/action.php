@@ -22,20 +22,18 @@ if (!$link) {
 }
 //-------------- Коннект
 
-$sql = 'SELECT * FROM groups WHERE name.group="УБВТ1901"';
+$sql = 'SELECT * FROM groups';
 
-$result = mysqli_query($link, $sql);
+$search_sql = mysqli_query($link, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-       echo $row["id.group"]. "<br>";
-    }
- } else {
-    echo "0 results";
+while ($result = mysqli_fetch_array($search_sql)) {
+   echo "{$result['id.group']}<br>";
  }
 
-$sql = mysqli_query($link, 'SELECT * FROM `lessons` LEFT JOIN `subjects` ON `lessons`.`subj`=`subjects`.`id.subject` LEFT JOIN `preps` ON `lessons`.`prep`=`preps`.`id.prep`');
-while ($result = mysqli_fetch_array($sql)) {
+$sql = 'SELECT * FROM `lessons` LEFT JOIN `subjects` ON `lessons`.`subj`=`subjects`.`id.subject` LEFT JOIN `preps` ON `lessons`.`prep`=`preps`.`id.prep`';
+
+$search_sql = mysqli_query($link, $sql);
+while ($result = mysqli_fetch_array($search_sql)) {
   echo "{$result['id.lesson']} {$result['subject']} {$result['lastname']} {$result['room']} {$result['type']} {$result['place']} {$result['start']} {$result['end']} {$result['day']}<br>";
 }
 mysqli_close($link);
